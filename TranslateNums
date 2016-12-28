@@ -1,0 +1,70 @@
+///here we compare the array of numbers written in VFDdis to nums 0-9.  If these
+// are a numb w/in range, we check what place they are in the VFDdis array and
+//replace the empty VFDposWriteSeg with the lib. array numericalValue for the num. written
+
+void TranslateNums(){
+  
+  for (int j=0; j<numberOfTUBES; j++){
+
+    if (VFDdis[j] == 0){ //are any values a "0"
+      for (int i = 0; i< numberOfPinOUTs; i++){  //if so, make VFDposwriteSeg the 0 from numericalValue lib 
+        VFDposWriteSeg [j][i] = numericalValue [0][i];
+      } 
+    }
+
+    if (VFDdis[j] == 1){
+      for (int i = 0; i< numberOfPinOUTs; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [1][i];
+      } 
+    }
+
+    if (VFDdis[j] == 2){
+      for (int i = 0; i< numberOfPinOUTs; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [2][i];
+      } 
+    }
+
+    if (VFDdis[j] == 3){
+      for (int i = 0; i< numberOfPinOUTs; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [3][i];
+      } 
+    }
+
+    if (VFDdis[j] == 4){
+      for (int i = 0; i< numberOfPinOUTs; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [4][i];
+      } 
+    }
+
+    if (VFDdis[j] == 5){
+      for (int i = 0; i< numberOfPinOUTs ; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [5][i];
+      } 
+    }
+
+    if (VFDdis[j] == 6){
+      for (int i = 0; i< numberOfPinOUTs; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [6][i];
+      } 
+    }
+
+    if (VFDdis[j] == 7){
+      for (int i = 0; i< numberOfPinOUTs; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [7][i];
+      } 
+    }
+
+    if (VFDdis[j] == 8){
+      for (int i = 0; i< numberOfPinOUTs; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [8][i];
+      } 
+    }
+
+    if (VFDdis[j] == 9){
+      for (int i = 0; i< numberOfPinOUTs; i++){   
+        VFDposWriteSeg [j][i] = numericalValue [9][i];
+
+      } 
+    }
+  }
+}
