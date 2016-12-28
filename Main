@@ -1,0 +1,95 @@
+
+///this is a change of how data is sent to the chips-- making 12 (the number of bits per chip)
+//the wiring is to a single chip
+///multiplexing data- sending bits to chip - turn grid on and off - 
+// PNP low == send signal // PNP high == stop signal
+
+
+const int numberOfTUBES = 6;
+const int numberOfPinOUTs = 12; 
+
+//pins for transistor signal - array - HIGH == nothing done - when LOW, VFD powered.
+const int grid[numberOfTUBES]={13, 12, 11, 10, 9, 8};
+
+int counter = 0;
+
+//array capable of holding 6 digits WHAT TO DISPLAY
+int VFDdis[numberOfTUBES] = {0, 1, 2, 3, 4, 5};
+
+//transfer the above into writeable array
+int VFDposWriteSeg[numberOfTUBES][numberOfPinOUTs];
+
+
+//VFD ARDUINO PINS
+int clk = 4;
+int load = 5;
+int blank = 7;
+int din = 3; 
+
+
+//Numerical values 
+int numericalValue[10][numberOfPinOUTs] ={
+  //ZERO // 0  // ZERO // 
+  {
+    0, 1, 1, 1, 1, 1, 1, 0, 0, 0 , 0, 0,             }
+  , 
+  //ONE // 1  // ONE //
+  { 
+    0, 0, 1, 1, 0, 0, 0, 0,  0, 0 , 0, 0,           }
+  ,
+  //TWO // 2  // TWO //	
+  { 
+    0, 1, 1, 0, 1, 1, 0, 1, 0, 0 , 0, 0,              }
+  ,
+  //THREE // 3  // THREE //
+  { 
+    0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0,           }
+  ,
+  //FOUR // 4  // FOUR // 
+  { 
+    0, 0, 1, 1, 0, 0, 1, 1, 0, 0 , 0, 0,            }
+  ,
+  //FIVE // 5  // FIVE // 
+  { 
+    0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0,             }
+  ,
+  //SIX // 6  // SIX // 
+  { 
+    0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0,           }
+  ,
+  //SEVEN // 7  // SEVEN // 
+  { 
+    0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,          }
+  ,
+  //EIGHT // 8  // EIGHT //
+  {
+    0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,         }
+  ,
+  //NINE // 9  // NINE //
+  { 
+    0, 1, 1, 1, 1, 0, 1, 1, 0, 0 , 0, 0,          }
+  ,
+};
+
+
+
+void setup(){
+ 
+  //VFD
+  pinMode(din, OUTPUT);
+  pinMode(clk, OUTPUT); 
+  pinMode(load, OUTPUT);
+  pinMode(blank, OUTPUT);
+ 
+  //load the grid pins
+  for (int i = 0; i< sizeof(grid); i ++){
+    pinMode(grid[i], OUTPUT);
+    digitalWrite (grid[i], HIGH);
+  }
+}
+
+
+void loop(){
+  TranslateNums();
+  wrt();
+}
