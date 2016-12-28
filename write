@@ -1,0 +1,30 @@
+void wrt(){
+
+  for(int i=0;i<numberOfTUBES;i++) {
+    
+    digitalWrite (grid[i], LOW);
+
+    for(int b=0; b < numberOfPinOUTs; b++) {  
+
+      counter = counter + 1;
+      
+      digitalWrite (din, VFDposWriteSeg[i][b]);
+      digitalWrite (clk, HIGH);
+      digitalWrite (clk, LOW);
+    }
+
+    digitalWrite (load, HIGH);
+    digitalWrite (load, LOW);
+  
+    digitalWrite(grid[i], HIGH);
+    digitalWrite(din, 0);
+  }
+
+  if (counter > numberOfPinOUTs*numberOfTUBES){
+    counter = 0;
+  }
+}
+
+
+
+
