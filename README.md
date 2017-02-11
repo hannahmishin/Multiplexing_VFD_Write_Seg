@@ -10,3 +10,6 @@ Components:
 VFD - ISDEN 7 seg
 MAX6920
 PNP to grid.
+
+This is a basic code with merely functional code.
+See Other VFD Code for final code.
